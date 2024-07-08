@@ -17,7 +17,11 @@ import {
   FaRegLaughWink,
   FaHeart,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { DiReact } from "react-icons/di";
+import { MdDashboard } from "react-icons/md";
 import sidebarBg from "../../assets/bg2.jpg";
+import "./SideBar.scss";
 
 const SideBar = (props) => {
   const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -41,26 +45,27 @@ const SideBar = (props) => {
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
             }}>
-            Bien
+            <DiReact size={"3em"} color={"00bfff"} />
+            <span>Bien</span>
           </div>
         </SidebarHeader>
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem
-              icon={<FaTachometerAlt />}
-              suffix={<span className="badge red">New</span>}>
-              dashboard
+            <MenuItem icon={<MdDashboard />}>
+              Dashboard
+              <Link to="/admin" />
             </MenuItem>
-            <MenuItem icon={<FaGem />}> components</MenuItem>
           </Menu>
           <Menu iconShape="circle">
-            <SubMenu
-              suffix={<span className="badge yellow">3</span>}
-              icon={<FaRegLaughWink />}>
-              <MenuItem> 1</MenuItem>
-              <MenuItem> 2</MenuItem>
-              <MenuItem> 3</MenuItem>
+            <SubMenu title="Features" icon={<FaGem />}>
+              <MenuItem>
+                {" "}
+                Quản lý users
+                <Link to="/admin/manage-users" />
+              </MenuItem>
+              <MenuItem> Quản lý bài quiz</MenuItem>
+              <MenuItem> Quản lý câu hỏi</MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
@@ -76,14 +81,13 @@ const SideBar = (props) => {
               target="_blank"
               className="sidebar-btn"
               rel="noopener noreferrer">
-              <FaGithub />
               <span
                 style={{
                   whiteSpace: "nowrap",
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                 }}>
-                viewSource
+                &#169; Bien
               </span>
             </a>
           </div>
