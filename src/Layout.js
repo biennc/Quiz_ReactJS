@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Admin from "./component/Admin/Admin";
-import User from "./component/User/User";
 import HomePage from "./component/Home/HomePage";
 import ManagerUser from "./component/Admin/Content/ManagerUser";
 import Dashboard from "./component/Admin/Content/Dashboard";
@@ -11,6 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Register from "./component/Auth/Register";
 import ListQuiz from "./component/User/ListQuiz";
 import DetailQuiz from "./component/User/DetailQuiz";
+import ManageQuiz from "./component/Admin/Content/Quiz/ManageQuiz";
+import Questions from "./component/Admin/Content/Question/Questions";
+
 const NotFound = () => {
   return (
     <div className="container mt-3 alert alert-danger">
@@ -31,6 +33,8 @@ const Layout = (props) => {
         <Route path="/admin" element={<Admin />}>
           <Route index element={<Dashboard />} />
           <Route path="manage-users" element={<ManagerUser />} />
+          <Route path="manage-quizzes" element={<ManageQuiz />} />
+          <Route path="manage-questions" element={<Questions />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
