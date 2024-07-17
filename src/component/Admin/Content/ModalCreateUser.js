@@ -3,9 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { postCreateNewUser } from "../../../services/apiServices";
-
 import { toast } from "react-toastify";
-// import { validate } from "webpack";
 
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
