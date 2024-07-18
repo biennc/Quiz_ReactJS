@@ -5,6 +5,7 @@ import _ from "lodash";
 import "./DetailQuiz.scss";
 import Question from "./Question";
 import ModalResult from "./ModalResult";
+import RightContent from "../Admin/Content/RightContent";
 
 const DetailQuiz = (props) => {
   const params = useParams();
@@ -142,13 +143,21 @@ const DetailQuiz = (props) => {
           <button className="btn btn-primary" onClick={() => handleNext()}>
             Next
           </button>
-          <button className="btn btn-primary" onClick={() => handleNext()}>
+          <button
+            className="btn btn-warning"
+            onClick={() => handleFinishQuiz()}>
             Finish
           </button>
         </div>
       </div>
 
-      <div className="right-content">count down</div>
+      <div className="right-content">
+        <RightContent
+          dataQuiz={dataQuiz}
+          handleFinishQuiz={handleFinishQuiz}
+          setIndex={setIndex}
+        />
+      </div>
       <ModalResult
         show={isShowModalResult}
         setShow={setIsShowModalResult}
