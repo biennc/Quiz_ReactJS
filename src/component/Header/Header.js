@@ -1,13 +1,14 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../services/apiServices";
 import { toast } from "react-toastify";
 import { doLogout } from "../../redux/action/useAction";
 import Language from "./Language";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { FaReact } from "react-icons/fa";
 
 const Header = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -23,7 +24,7 @@ const Header = () => {
     navigate("/register");
   };
 
-  const handleLogout = async () => {
+  const handleLogOut = async () => {
     let rs = await logout(account.email, account.refresh_token);
     if (rs && rs.EC === 0) {
       dispatch(doLogout());
@@ -38,6 +39,7 @@ const Header = () => {
       <Container>
         {/* <Navbar.Brand href="">Bien</Navbar.Brand> */}
         <NavLink to="/" className="navbar-brand">
+          <FaReact className="brand-icon" />
           Bien
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -59,7 +61,9 @@ const Header = () => {
                 <button className="btn-login" onClick={() => handleLogin()}>
                   Log in
                 </button>
-                <button className="btn-signup" onClick={() => handleRegister()}>
+                <button
+                  className="btn-sign-up"
+                  onClick={() => handleRegister()}>
                   Sign up
                 </button>
               </>
@@ -69,7 +73,7 @@ const Header = () => {
                   Log in
                 </NavDropdown.Item>
                 <NavDropdown.Item>Profile</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleLogout()}>
+                <NavDropdown.Item onClick={() => handleLogOut()}>
                   Log out
                 </NavDropdown.Item>
               </NavDropdown>

@@ -5,7 +5,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 const HomePage = (props) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const account = useSelector((state) => state.user.account);
+  // const account = useSelector((state) => state.user.account);
   const navigate = useNavigate();
   const { t } = useTranslation();
 

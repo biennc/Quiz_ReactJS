@@ -1,3 +1,21 @@
+.icon-sidebar {
+  font-size: 15px;
+  color: #00bfff;
+  animation: spin 5s infinite linear;
+
+  @keyframes spin {
+    from {
+      transform: scale(1) rotate(360deg);
+    }
+    to {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+}
+.span-quizzy {
+  font-size: 20px;
+}
+
 .sidebar-btn-wrapper {
   display: flex;
   align-items: center;
