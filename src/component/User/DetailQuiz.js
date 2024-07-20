@@ -25,7 +25,6 @@ const DetailQuiz = (props) => {
 
   const fetchQuestions = async () => {
     let res = await getDataQuiz(quizId);
-    console.log("res: ", res);
     if (res && res.EC === 0) {
       let raw = res.DT;
       let data = _.chain(raw)

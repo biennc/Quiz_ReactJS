@@ -5,7 +5,6 @@ import { useState } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import Language from "../Header/Language";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
 import { Outlet } from "react-router-dom";
 
 const Admin = (props) => {

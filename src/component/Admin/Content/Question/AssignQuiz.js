@@ -40,7 +40,7 @@ const AssignQuiz = (props) => {
           label: `${item.id} - ${item.username} - ${item.email}`,
         };
       });
-      setListQuiz(users);
+      setListUser(users);
     }
   };
 

@@ -18,8 +18,8 @@ const ManagerUser = (props) => {
 
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
-  const [dataUpdate, setDataUpdate] = useState({});
   const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState({});
   const [dataDelete, setDataDelete] = useState({});
 
   const [listUsers, setListUsers] = useState([]);

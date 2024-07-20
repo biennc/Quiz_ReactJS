@@ -54,7 +54,7 @@ const SideBar = (props) => {
             </MenuItem>
           </Menu>
           <Menu iconShape="circle">
-            <SubMenu title="Features" icon={<FaGem />}>
+            <SubMenu title="Manage" icon={<FaGem />}>
               <MenuItem>
                 {" "}
                 Manage users
