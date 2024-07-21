@@ -2,12 +2,8 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import History from "./History";
-import ChangePassword from "./ChangePassword";
-import UserInfor from "./UserInfor";
-import "./Share.scss";
 
-const Profile = (props) => {
+const History = (props) => {
   const { show, setShow } = props;
 
   const handleClose = () => setShow(false);
@@ -25,17 +21,17 @@ const Profile = (props) => {
         <Modal.Body>
           <Tabs
             defaultActiveKey="profile"
-            id="uncontrolled-tab-example"
+            id="fill-tab-example"
             className="mb-3"
             justify>
-            <Tab eventKey="home" title="User information">
-              <UserInfor />
+            <Tab eventKey="home" title="Main infor">
+              Your information
             </Tab>
             <Tab eventKey="profile" title="Password">
-              <ChangePassword />
+              Change password
             </Tab>
             <Tab eventKey="longer-tab" title="History doing quizzes">
-              <History />
+              History doing quizzes
             </Tab>
           </Tabs>
         </Modal.Body>
@@ -44,4 +40,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default History;

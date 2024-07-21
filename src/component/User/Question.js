@@ -1,16 +1,20 @@
 import _ from "lodash";
-import Select from "react-select";
-import Lightbox from "react-awesome-lightbox";
 import { useState } from "react";
+import Lightbox from "react-awesome-lightbox";
+import { useTranslation } from "react-i18next";
+import { IoIosClose, IoIosCheckmark } from "react-icons/io";
 
 const Question = (props) => {
-  const { data, index } = props;
+  const { t } = useTranslation();
+  const { data, index, isShowAnswer } = props;
   const [isPreviewImage, setIsPreviewImage] = useState(false);
+
   if (_.isEmpty(data)) {
     return <></>;
   }
 
-  const handleHandleCheckbox = (event, aId, qId) => {
+  const handleCheckbox = (event, aId, qId) => {
+    // console.log('check: ', event.target.checked)
     props.handleCheckbox(aId, qId);
   };
 
@@ -26,7 +30,7 @@ const Question = (props) => {
           {isPreviewImage === true && (
             <Lightbox
               image={`data:image/jpeg;base64,${data.image}`}
-              title={"Question image"}
+              title={"Question Image"}
               onClose={() => setIsPreviewImage(false)}></Lightbox>
           )}
         </div>
@@ -34,30 +38,45 @@ const Question = (props) => {
         <div className="q-image"></div>
       )}
       <div className="question">
-        {" "}
-        Question {index + 1}:{data.questionDescription}
-        <div className="answer">
-          {data.answers &&
-            data.answers.length &&
-            data.answers.map((a, index) => {
-              return (
-                <div key={`answer-${index}`} className="a-child">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      checked={a.isSelected}
-                      onChange={(event) =>
-                        handleHandleCheckbox(event, a.id, data.questionId)
-                      }
-                      value={""}
-                    />
-                    <label className="form-check-label">{a.description}</label>
-                  </div>
+        {t("quiz.question")} {index + 1}: {data.questionDescription} ?
+      </div>
+      <div className="answer">
+        {data.answers &&
+          data.answers.length &&
+          data.answers.map((a, i) => {
+            return (
+              <div key={`answer-${i}`} className="a-child">
+                <div className="form-check">
+                  <input
+                    id={`checkbox-${i}-${index}`}
+                    className="form-check-input"
+                    type="checkbox"
+                    checked={a.isSelected}
+                    disabled={props.isSubmitQuiz}
+                    onChange={(event) =>
+                      handleCheckbox(event, a.id, data.questionId)
+                    }
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={`checkbox-${i}-${index}`}>
+                    {a.description}
+                  </label>
+                  {isShowAnswer === true && (
+                    <>
+                      {a.isSelected === true && a.isCorrect === false && (
+                        <IoIosClose className="incorrect" />
+                      )}
+
+                      {a.isCorrect === true && (
+                        <IoIosCheckmark className="correct" />
+                      )}
+                    </>
+                  )}
                 </div>
-              );
-            })}
-        </div>
+              </div>
+            );
+          })}
       </div>
     </>
   );

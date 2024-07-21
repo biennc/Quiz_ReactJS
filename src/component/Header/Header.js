@@ -19,6 +19,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const [isShowModalProfile, setIsShowModalProfile] = useState(false);
+
   const handleLogin = () => {
     navigate("/login");
   };

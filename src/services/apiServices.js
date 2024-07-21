@@ -27,6 +27,15 @@ const putUpdateUser = (id, role, username, image) => {
   return axios.put("api/v1/participant", data);
 };
 
+const putUpdateProfile = (username, image) => {
+  //submit data
+  const data = new FormData();
+  data.append("username", username);
+  data.append("userImage", image);
+
+  return axios.put("api/v1/profile", data);
+};
+
 const deleteUser = (userId) => {
   return axios.delete("api/v1/participant", { data: { id: userId } });
 };
@@ -149,4 +158,5 @@ export {
   logout,
   postUpsertQA,
   getOverview,
+  putUpdateProfile,
 };

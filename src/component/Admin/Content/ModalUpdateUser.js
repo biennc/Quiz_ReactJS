@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { putUpdateUser } from "../../../services/apiServices";
+import "./ManageUser.scss";
 import _ from "lodash";
 import { toast } from "react-toastify";
 // import { validate } from "webpack";
@@ -68,7 +69,6 @@ const ModalUpdateUser = (props) => {
     }
 
     let data = await putUpdateUser(dataUpdate.id, role, username, image);
-    console.log("...check res", data);
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose();
@@ -96,20 +96,20 @@ const ModalUpdateUser = (props) => {
         <Modal.Body>
           <data className="row g-3">
             <div className="col-md-6">
-              <label className="data-label">Email</label>
+              <label className="form-label">Email</label>
               <input
                 type="email"
-                className="data-control"
+                className="form-control"
                 value={email}
                 disabled
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="col-md-6">
-              <label className="data-label">Password</label>
+              <label className="form-label">Password</label>
               <input
                 type="password"
-                className="data-control"
+                className="form-control"
                 value={password}
                 disabled
                 onChange={(event) => setPassword(event.target.value)}
@@ -117,18 +117,18 @@ const ModalUpdateUser = (props) => {
             </div>
 
             <div className="col-md-6">
-              <label className="data-label">Username</label>
+              <label className="form-label">Username</label>
               <input
                 type="text"
-                className="data-control"
+                className="form-control"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </div>
             <div className="col-md-4">
-              <label className="data-label">Role</label>
+              <label className="form-label">Role</label>
               <select
-                className="data-select"
+                className="form-select"
                 onChange={(event) => setRole(event.target.value)}
                 value={role}>
                 <option selected value="USERS">
@@ -138,7 +138,7 @@ const ModalUpdateUser = (props) => {
               </select>
             </div>
             <div className="col-md-12">
-              <label className="data-label label-upload" htmlFor="labelUpload">
+              <label className="form-label label-upload" htmlFor="labelUpload">
                 <FcPlus />
                 Upload file image
               </label>
