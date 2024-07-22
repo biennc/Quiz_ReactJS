@@ -1,19 +1,15 @@
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "react-bootstrap/Modal";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FcPlus } from "react-icons/fc";
-import { putUpdateProfile } from "../../services/apiServices";
+import { postUpdateProfile } from "../../services/apiServices";
 
 const UserInfor = (props) => {
-  //   const { show, setShow } = props;
-
   const account = useSelector((state) => state.user.account);
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("USER");
   const [image, setImage] = useState("");
@@ -57,13 +53,13 @@ const UserInfor = (props) => {
       return;
     }
 
-    let data = await putUpdateProfile(username, image);
+    let data = await postUpdateProfile(username, image);
     if (data && data.EC === 0) {
       toast.success(data.EM);
       //   handleClose();
       // await props.fetchListUsers();
       // props.setCurrentPage(1);
-      await props.fetchListUsersWithPaginate(props.currentPage);
+      // await props.fetchListUsersWithPaginate(props.currentPage);
     }
 
     if (data && data.EC !== 0) {
@@ -73,7 +69,7 @@ const UserInfor = (props) => {
 
   return (
     <>
-      <data className="row g-3">
+      <data className="row g-3 modal-update-infor">
         <div className="col-md-4">
           <label className="form-label">Username</label>
           <input
@@ -94,14 +90,16 @@ const UserInfor = (props) => {
           />
         </div>
         <div className="col-md-4">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            disabled
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <label className="form-label">Role</label>
+          <select
+            className="form-select"
+            onChange={(event) => setRole(event.target.value)}
+            value={role}>
+            <option selected value="USERS">
+              USERS
+            </option>
+            <option value="ADMIN">ADMIN</option>
+          </select>
         </div>
         <div className="col-md-12 preview-image">
           <label className="form-label label-upload" htmlFor="labelUpload">

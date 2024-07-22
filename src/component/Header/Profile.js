@@ -1,6 +1,5 @@
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import History from "./History";
 import ChangePassword from "./ChangePassword";

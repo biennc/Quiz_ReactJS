@@ -1,41 +1,69 @@
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import { toast } from "react-toastify";
+import { postChangePassword } from "../../services/apiServices";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
-import Modal from "react-bootstrap/Modal";
+// import { useSelector } from "react-redux";
 
 const ChangePassword = (props) => {
-  const { show, setShow } = props;
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleClose = () => setShow(false);
+  // const account = useSelector((state) => state.user.account);
+
+  const handleUpdatePassword = async () => {
+    // if (account.password !== currentPassword) {
+    //   toast.error("current password iscorrect");
+    // } else {
+    let data = await postChangePassword(currentPassword, newPassword);
+    if (data && data.EC === 0) {
+      toast.success(data.EM);
+    } else {
+      toast.error(data.EM);
+    }
+    // }
+  };
+
   return (
     <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        size="xl"
-        backdrop="static"
-        className="modal-profile">
-        <Modal.Header closeButton>
-          <Modal.Title>Manage your information</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Tabs
-            defaultActiveKey="profile"
-            id="fill-tab-example"
-            className="mb-3"
-            justify>
-            <Tab eventKey="home" title="Main infor">
-              Your information
-            </Tab>
-            <Tab eventKey="profile" title="Password">
-              Change password
-            </Tab>
-            <Tab eventKey="longer-tab" title="History doing quizzes">
-              History doing quizzes
-            </Tab>
-          </Tabs>
-        </Modal.Body>
-      </Modal>
+      <data className="row g-3 modal-change-password">
+        <div className="col-md-6">
+          <label className="form-label">Current password</label>
+          <input
+            type="text"
+            className="form-control"
+            value={currentPassword}
+            key={"current_password"}
+            onChange={(event) => setCurrentPassword(event.target.value)}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">New password</label>
+          <input
+            type="email"
+            className="form-control"
+            value={newPassword}
+            onChange={(event) => setNewPassword(event.target.value)}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Confirm password</label>
+          <input
+            type="password"
+            className="form-control"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+          />
+        </div>
+      </data>
+      <div className="submit-update-infor">
+        <Button
+          className="btn-submit"
+          variant="warning"
+          onClick={() => handleUpdatePassword()}>
+          Update
+        </Button>
+      </div>
     </>
   );
 };

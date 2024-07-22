@@ -27,13 +27,13 @@ const putUpdateUser = (id, role, username, image) => {
   return axios.put("api/v1/participant", data);
 };
 
-const putUpdateProfile = (username, image) => {
+const postUpdateProfile = (username, image) => {
   //submit data
   const data = new FormData();
   data.append("username", username);
   data.append("userImage", image);
 
-  return axios.put("api/v1/profile", data);
+  return axios.post("api/v1/profile", data);
 };
 
 const deleteUser = (userId) => {
@@ -42,6 +42,14 @@ const deleteUser = (userId) => {
 
 const getUserWithPaginate = (page, limit) => {
   return axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+};
+
+const getHistory = () => {
+  return axios.get(`api/v1/history`);
+};
+
+const postChangePassword = () => {
+  return axios.post(`api/v1/change-password`);
 };
 
 const postLogin = (userEmail, userPassword) => {
@@ -158,5 +166,7 @@ export {
   logout,
   postUpsertQA,
   getOverview,
-  putUpdateProfile,
+  postUpdateProfile,
+  getHistory,
+  postChangePassword,
 };

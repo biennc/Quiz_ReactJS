@@ -1,41 +1,62 @@
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-import { useState } from "react";
-import Modal from "react-bootstrap/Modal";
+import React, { useEffect, useState } from "react";
+import { getHistory } from "../../services/apiServices";
+import moment from "moment";
+import { Table } from "react-bootstrap";
 
 const History = (props) => {
-  const { show, setShow } = props;
+  const [listHistory, setListHistory] = useState([]);
 
-  const handleClose = () => setShow(false);
+  useEffect(() => {
+    fetchHistory();
+  }, []);
+
+  const fetchHistory = async () => {
+    let res = await getHistory();
+    if (res && res.EC === 0) {
+      let newData = res?.DT?.data?.map((item) => {
+        return {
+          total_correct: item.total_correct,
+          total_questions: item.total_questions,
+          name: item?.quizHistory?.name ?? "",
+          id: item.id,
+          date: moment(item.createAt).utc().format("DD/MM/YY hh:mm:ss A"),
+        };
+      });
+      if (newData.length > 7) {
+        newData = newData.slice(newData.length - 7, newData.length);
+      }
+      setListHistory(newData);
+    }
+  };
+
   return (
     <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        size="xl"
-        backdrop="static"
-        className="modal-profile">
-        <Modal.Header closeButton>
-          <Modal.Title>Manage your information</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Tabs
-            defaultActiveKey="profile"
-            id="fill-tab-example"
-            className="mb-3"
-            justify>
-            <Tab eventKey="home" title="Main infor">
-              Your information
-            </Tab>
-            <Tab eventKey="profile" title="Password">
-              Change password
-            </Tab>
-            <Tab eventKey="longer-tab" title="History doing quizzes">
-              History doing quizzes
-            </Tab>
-          </Tabs>
-        </Modal.Body>
-      </Modal>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Quiz name</th>
+            <th>Total question</th>
+            <th>Total correct answer</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listHistory &&
+            listHistory.length > 0 &&
+            listHistory.map((item, index) => {
+              return (
+                <tr key={`table-users-${index}`}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.total_questions}</td>
+                  <td>{item.total_correct}</td>
+                  <td>{item.date}</td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </Table>
     </>
   );
 };

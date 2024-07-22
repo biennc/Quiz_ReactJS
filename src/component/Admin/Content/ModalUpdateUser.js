@@ -6,7 +6,6 @@ import { putUpdateUser } from "../../../services/apiServices";
 import "./ManageUser.scss";
 import _ from "lodash";
 import { toast } from "react-toastify";
-// import { validate } from "webpack";
 
 const ModalUpdateUser = (props) => {
   const { show, setShow, dataUpdate } = props;
