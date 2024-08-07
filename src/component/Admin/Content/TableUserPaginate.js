@@ -1,5 +1,5 @@
 import ReactPaginate from "react-paginate";
-// import { useEffect, useState } from "react";
+import "./Quiz/QuizQA";
 
 const TableUserPaginate = (props) => {
   const { listUsers, pageCount } = props;
@@ -33,7 +33,7 @@ const TableUserPaginate = (props) => {
                   <td>{item.username}</td>
                   <td>{item.email}</td>
                   <td>{item.role}</td>
-                  <td>
+                  <td className="btn-quiz">
                     <button className="btn btn-secondary">View</button>
                     <button
                       className="btn btn-warning mx-3"

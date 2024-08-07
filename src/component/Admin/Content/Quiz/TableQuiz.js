@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getAllQuizForAdmin } from "../../../../services/apiServices";
 import ModalDeleteQuiz from "./ModalDeleteQuiz";
 import ModalUpdateQuiz from "./ModalUpdateQuiz";
+import "./QuizQA.scss";
 
 const TableQuiz = (props) => {
   const [listQuiz, setListQuiz] = useState([]);
@@ -55,7 +56,9 @@ const TableQuiz = (props) => {
                   <td>{item.name}</td>
                   <td>{item.description}</td>
                   <td>{item.difficulty}</td>
-                  <td style={{ display: "flex", gap: "15px" }}>
+                  <td
+                    style={{ display: "flex", gap: "15px" }}
+                    className="btn-quiz">
                     <button
                       className="btn btn-warning"
                       onClick={() => handleUpdate(item)}>

@@ -9,11 +9,12 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-import { FaGem } from "react-icons/fa";
+import { FaUsersCog, FaHome, FaPenSquare } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { DiReact } from "react-icons/di";
-import { MdDashboard } from "react-icons/md";
-import sidebarBg from "../../assets/bg2.jpg";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { SiManageiq } from "react-icons/si";
+// import sidebarBg from "../../assets/bg2.jpg";
 import "./SideBar.scss";
 
 const SideBar = (props) => {
@@ -22,7 +23,7 @@ const SideBar = (props) => {
   return (
     <>
       <ProSidebar
-        image={sidebarBg}
+        // image={sidebarBg}
         collapsed={collapsed}
         toggled={toggled}
         breakPoint="md"
@@ -49,24 +50,24 @@ const SideBar = (props) => {
 
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem icon={<MdDashboard />}>
+            <MenuItem icon={<FaHome />}>
               Dashboard
               <Link to="/admin" />
             </MenuItem>
           </Menu>
           <Menu iconShape="circle">
-            <SubMenu title="Manage" icon={<FaGem />}>
-              <MenuItem>
+            <SubMenu title="Manage" icon={<SiManageiq />}>
+              <MenuItem icon={<FaUsersCog />}>
                 {" "}
                 Manage users
                 <Link to="/admin/manage-users" />
               </MenuItem>
-              <MenuItem>
+              <MenuItem icon={<FaPenSquare />}>
                 {" "}
                 Manage quizzes
                 <Link to="/admin/manage-quizzes" />
               </MenuItem>
-              <MenuItem>
+              <MenuItem icon={<IoIosCheckmarkCircle />}>
                 {" "}
                 Manage questions
                 <Link to="/admin/manage-questions" />

@@ -27,7 +27,7 @@ const ManageQuiz = (props) => {
   };
 
   const handleSubmitQuiz = async () => {
-    if (!name || description) {
+    if (!name || !description) {
       toast.error("Name/Description id required");
       return;
     }
