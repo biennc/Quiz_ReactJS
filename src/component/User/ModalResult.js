@@ -29,10 +29,10 @@ const ModalResult = (props) => {
               handleClose();
               props.handleShowAnswer();
             }}>
-            {t("quiz.show-answer")}
+            Show Answers
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            {t("quiz.close")}
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

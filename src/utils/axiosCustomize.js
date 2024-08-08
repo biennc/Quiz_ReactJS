@@ -7,6 +7,9 @@ NProgress.configure({
   trickleSpeed: 100,
 });
 
+// const URL = process.env.APP_URL;
+// console.log(URL);
+
 const instance = axios.create({
   baseURL: "http://localhost:8081/",
 });

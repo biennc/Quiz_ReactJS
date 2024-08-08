@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import "./QuizQA.scss";
 import Lightbox from "react-awesome-lightbox";
-import { BsFillPatchPlusFill } from "react-icons/bs";
-import { BsPatchMinusFill } from "react-icons/bs";
-import { AiOutlineMinusCircle } from "react-icons/ai";
-import { AiFillPlusSquare } from "react-icons/ai";
+import { BsFillPatchPlusFill, BsPatchMinusFill } from "react-icons/bs";
+import { AiOutlineMinusCircle, AiFillPlusSquare } from "react-icons/ai";
 import { RiImageAddFill } from "react-icons/ri";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
@@ -31,11 +29,6 @@ const QuizQA = (props) => {
         },
       ],
     },
-  ];
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
   ];
 
   const [questions, setQuestions] = useState(initQuestions);
@@ -173,8 +166,8 @@ const QuizQA = (props) => {
       event.target.files &&
       event.target.files[0]
     ) {
-      questionsClone[index].imageFile = event.target.file[0];
-      questionsClone[index].imageName = event.target.file[0].name;
+      questionsClone[index].imageFile = event.target.files[0];
+      questionsClone[index].imageName = event.target?.files[0].name;
       setQuestions(questionsClone);
     }
   };
@@ -263,7 +256,7 @@ const QuizQA = (props) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
+      reader.onerror = (error) => reject(error);
     });
 
   const handlePreviewImage = (questionId) => {
@@ -424,11 +417,10 @@ const QuizQA = (props) => {
         )}
 
         {isPreviewImage === true && (
-          <Lightbox>
-            image = {dataImagePreview.url}
-            title = {dataImagePreview.title}
-            onClose ={() => setIsPreviewImage(false)}
-          </Lightbox>
+          <Lightbox
+            image={dataImagePreview.url}
+            title={dataImagePreview.title}
+            onClose={() => setIsPreviewImage(false)}></Lightbox>
         )}
       </div>
     </div>

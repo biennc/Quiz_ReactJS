@@ -32,11 +32,6 @@ const Questions = (props) => {
       ],
     },
   ];
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
 
   const [questions, setQuestions] = useState(initQuestions);
 
@@ -378,11 +373,10 @@ const Questions = (props) => {
         )}
 
         {isPreviewImage === true && (
-          <Lightbox>
-            image = {dataImagePreview.url}
-            title = {dataImagePreview.title}
-            onClose ={() => setIsPreviewImage(false)}
-          </Lightbox>
+          <Lightbox
+            image={dataImagePreview.url}
+            title={dataImagePreview.title}
+            onClose={() => setIsPreviewImage(false)}></Lightbox>
         )}
       </div>
     </div>

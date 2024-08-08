@@ -1,3 +1,4 @@
+import "./Quiz/QuizQA.scss";
 const TableUser = (props) => {
   const { listUsers } = props;
 
@@ -5,12 +6,20 @@ const TableUser = (props) => {
     <>
       <table className="table table-hover table-bordered">
         <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Username</th>
-            <th scope="col">email</th>
-            <th scope="col">role</th>
-            <th>Action</th>
+          <tr className="columns">
+            <th scope="col" className="col">
+              ID
+            </th>
+            <th scope="col" className="col-3">
+              Username
+            </th>
+            <th scope="col" className="col-3">
+              email
+            </th>
+            <th scope="col" className="col">
+              role
+            </th>
+            <th className="col-3">Action</th>
           </tr>
         </thead>
         <tbody>
