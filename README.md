@@ -70,7 +70,7 @@ Open DBeaver: create connection-> select postgres database-> fill in username, p
 Make sure docker is running Check by typing: docker -v 3
 
 ```
-$  docker compose -p hoidanit-react-ultimate up -d
+$  docker compose -p quiz-react-backend up -d
 ```
 
 **4. Clone this project**
