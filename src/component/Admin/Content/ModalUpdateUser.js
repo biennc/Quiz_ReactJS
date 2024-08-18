@@ -30,7 +30,7 @@ const ModalUpdateUser = (props) => {
 
   useEffect(() => {
     if (!_.isEmpty(dataUpdate)) {
-      setShow(false);
+      //update state
       setEmail(dataUpdate.email);
       setUsername(dataUpdate.username);
       setRole(dataUpdate.role);
@@ -58,7 +58,7 @@ const ModalUpdateUser = (props) => {
       );
   };
 
-  const handleSubmitCreateUser = async () => {
+  const handleSubmitUpdateUser = async () => {
     // validate
     const isValidEmail = validateEmail(email);
 
@@ -160,7 +160,7 @@ const ModalUpdateUser = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
+          <Button variant="primary" onClick={() => handleSubmitUpdateUser()}>
             Save
           </Button>
         </Modal.Footer>
