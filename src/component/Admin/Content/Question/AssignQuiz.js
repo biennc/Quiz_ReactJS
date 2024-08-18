@@ -58,7 +58,7 @@ const AssignQuiz = (props) => {
       <div className="col-6 form-group">
         <label className="mb-2">Select Quiz:</label>
         <Select
-          defaultValue={selectedQuiz}
+          selected={selectedQuiz}
           onChange={setSelectedQuiz}
           options={listQuiz}
         />
@@ -67,7 +67,7 @@ const AssignQuiz = (props) => {
       <div className="col-6 form-group">
         <label className="mb-2">Select User:</label>
         <Select
-          defaultValue={selectedUser}
+          selected={selectedUser}
           onChange={setSelectedUser}
           options={listUser}
         />

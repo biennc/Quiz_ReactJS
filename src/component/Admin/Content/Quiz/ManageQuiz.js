@@ -74,7 +74,7 @@ const ManageQuiz = (props) => {
                 </div>
                 <div className="my-3">
                   <Select
-                    defaultValue={type}
+                    selected={type}
                     onChange={setType}
                     value={type}
                     options={options}

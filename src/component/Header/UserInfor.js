@@ -4,7 +4,7 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FcPlus } from "react-icons/fc";
-import { postUpdateProfile } from "../../services/apiServices";
+import { putUpdateProfile } from "../../services/apiServices";
 
 const UserInfor = (props) => {
   const account = useSelector((state) => state.user.account);
@@ -53,7 +53,7 @@ const UserInfor = (props) => {
       return;
     }
 
-    let data = await postUpdateProfile(username, image);
+    let data = await putUpdateProfile(username, image);
     if (data && data.EC === 0) {
       toast.success(data.EM);
       //   handleClose();
